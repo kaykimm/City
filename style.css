@@ -1,0 +1,72 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Helvetica Neue', sans-serif;
+  background-color: white;
+  color: black;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+  background-color: #111;
+  color: white;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 4rem 2rem;
+}
+
+.image-output {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 0.3rem;
+  width: 80%;
+  min-height: 150px;
+  transition: all 0.2s ease;
+}
+
+.image-output img {
+  height: 100px;
+  object-fit: contain;
+}
+
+.input-line {
+  border-top: 1px solid #999;
+  width: 80%;
+  margin-top: 2rem;
+  padding-top: 0.5rem;
+  text-align: center;
+}
+
+input[type="text"] {
+  border: none;
+  outline: none;
+  font-size: 14px;
+  text-transform: uppercase;
+  text-align: center;
+  letter-spacing: 2px;
+  width: 100%;
+  margin-top: 1rem;
+}
+
+#saveBtn {
+  margin-top: 2rem;
+  align-self: flex-end;
+  margin-right: 10%;
+  background: none;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+}
