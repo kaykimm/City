@@ -64,7 +64,7 @@ body.dark-mode header {
 .left, .right {
   font-weight: 400;
   font-size: 12px;
-  letter-spacing: 1.5px;
+  letter-spacing: 1px;
 }
 
 .center {
@@ -138,7 +138,7 @@ input[type="text"] {
   font-size: 12px;
   text-transform: uppercase;
   text-align: center;
-  letter-spacing: 2px;
+  letter-spacing: 1.2px;
   z-index: 2;
   background: transparent;
   color: #333;
@@ -180,6 +180,43 @@ body.dark-mode #saveBtn {
   background: none;
 }
 
+.about-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.about-link {
+  cursor: pointer;
+}
+
+.about-popup {
+  position: absolute;
+  top: 35px;
+  right: 0;
+  width: 280px;
+  padding: 1rem;
+  background-color: black;
+  color: white;
+  font-size: 11px;
+  line-height: 1.6;
+  z-index: 999;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  border: 1px solid white;
+}
+
+.about-wrapper:hover .about-popup {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* ✅ 다크모드일 때 반전 스타일 */
+body.dark-mode .about-popup {
+  background-color: white;
+  color: black;
+  border: 1px solid black;
+}
 
 
 
