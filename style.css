@@ -220,25 +220,6 @@ body.dark-mode .about-popup {
   border: 1px solid black;
 }
 
-.rain-container {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 1; /* header보다 낮은 값으로 설정 */
-  overflow: hidden;
-}
-
-.drop {
-  position: absolute;
-  width: 1px;
-  height: 20px;
-  background: rgba(130, 130, 130, 0.5);
-  animation: fall 1s linear infinite;
-}
-
 @keyframes fall {
   to {
     transform: translateY(100vh);
