@@ -40,15 +40,59 @@ const saveBtn = document.getElementById('saveBtn');
 
 saveBtn.addEventListener('click', () => {
   const isDark = document.body.classList.contains('dark-mode');
-  const outputArea = document.getElementById('output');
+  const images = Array.from(document.querySelectorAll('.image-output img'));
 
-  html2canvas(outputArea, {
-    backgroundColor: isDark ? '#000000' : '#ffffff',
-    scale: 2
-  }).then(canvas => {
-    const link = document.createElement('a');
-    link.download = 'my_city.png';
-    link.href = canvas.toDataURL('image/png');
-    link.click();
+  if (images.length === 0) return;
+
+  const padding = 50;
+  const spacing = 12;
+  const scale = 2; // 🟢 고해상도 저장
+
+  let totalWidth = -spacing;
+  let maxHeight = 0;
+
+  images.forEach(img => {
+    const height = parseInt(img.style.height);
+    const ratio = img.naturalWidth / img.naturalHeight;
+    const width = height * ratio;
+
+    img._drawWidth = width;
+    img._drawHeight = height;
+
+    totalWidth += width + spacing;
+    maxHeight = Math.max(maxHeight, height);
   });
+
+  const canvas = document.createElement('canvas');
+  canvas.width = (totalWidth + padding * 2) * scale;
+  canvas.height = Math.max(canvas.width * 0.65, (maxHeight + padding * 2) * scale);
+  const ctx = canvas.getContext('2d');
+
+  ctx.scale(scale, scale);
+
+  // 🌓 배경 설정
+  ctx.fillStyle = isDark ? '#000000' : '#ffffff';
+  ctx.fillRect(0, 0, canvas.width / scale, canvas.height / scale);
+
+  let x = (canvas.width / scale - totalWidth) / 2;
+  const yCenter = canvas.height / scale / 2;
+
+  images.forEach(img => {
+    const y = yCenter - img._drawHeight / 2;
+
+    if (isDark) {
+      // 🔄 색 반전 적용
+      ctx.filter = 'invert(1) hue-rotate(180deg) brightness(1.2) contrast(1.1)';
+    } else {
+      ctx.filter = 'none';
+    }
+
+    ctx.drawImage(img, x, y, img._drawWidth, img._drawHeight);
+    x += img._drawWidth + spacing;
+  });
+
+  const link = document.createElement('a');
+  link.download = 'my_city.png';
+  link.href = canvas.toDataURL('image/png');
+  link.click();
 });
