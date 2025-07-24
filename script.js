@@ -29,8 +29,9 @@ input.addEventListener('input', () => {
   if (letterCount <= 3) {
     // 1~3글자: 크지만 균형잡힌 사이즈
     let baseHeight = 350;
-    if (letterCount === 1) baseHeight = 400;
-    if (letterCount === 3) baseHeight = 320;
+    if (letterCount === 1) baseHeight = 600;
+    if (letterCount === 2) baseHeight = 550;
+    if (letterCount === 3) baseHeight = 500;
 
     for (let char of text) {
       const img = document.createElement('img');
