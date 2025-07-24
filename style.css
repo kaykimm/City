@@ -19,20 +19,21 @@ body.dark-mode {
 /* 헤더 */
 /* 낮 모드 (기본) */
 header {
-  position: sticky;
+  position: relative;
+  z-index: 10;
   top: 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 1rem 2rem;
-  background-color: #111;   /* 낮 모드 = 검정 헤더 */
+  background-color: #111;  
   color: white;
   transition: background-color 0.3s, color 0.3s;
 }
 
 /* 밤 모드 */
 body.dark-mode header {
-  background-color: white;  /* 밤 모드 = 흰색 헤더 */
+  background-color: white;  
   color: black;
 }
 
@@ -52,13 +53,13 @@ body.dark-mode header {
 .mode-toggle img {
   width: 19px;
   height: auto;
-  filter: invert(0); /* 기본: 검정 (흰색 아이콘 유지) */
+  filter: invert(0); 
   cursor: pointer;
   transition: filter 0.3s ease;
 }
 
 .dark-mode .mode-toggle img {
-  filter: invert(1); /* 반전: 흰색 → 검정 (다크모드에 맞게) */
+  filter: invert(1); 
 }
 
 .left, .right {
@@ -93,8 +94,8 @@ main {
 /* 이미지 출력 wrapper */
 .input-wrapper {
   position: relative;
-  height: 450px; /* 유지 */
-  padding-bottom: 3rem; /* 👈 추가! 둘 다 살짝 내려감 */
+  height: 450px; 
+  padding-bottom: 3rem; 
   width: 80%;
   max-width: 1000px;
   overflow: hidden;
@@ -111,14 +112,15 @@ main {
   display: flex;
   align-items: flex-end;
   justify-content: center;
-  gap: 0.3rem;
+  gap: 0rem;
   pointer-events: none;
   z-index: 1;
   overflow: hidden; 
 }
 
 .image-output img {
-  max-height: 750px;
+  max-height: 800px;
+  margin: 0;
   object-fit: contain;
   transition: height 0.2s ease, filter 0.3s;
 }
@@ -211,11 +213,37 @@ body.dark-mode #saveBtn {
   pointer-events: auto;
 }
 
-/* ✅ 다크모드일 때 반전 스타일 */
+/* 다크모드일 때 반전 */
 body.dark-mode .about-popup {
   background-color: white;
   color: black;
   border: 1px solid black;
+}
+
+.rain-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1; /* header보다 낮은 값으로 설정 */
+  overflow: hidden;
+}
+
+.drop {
+  position: absolute;
+  width: 1px;
+  height: 20px;
+  background: rgba(130, 130, 130, 0.5);
+  animation: fall 1s linear infinite;
+}
+
+@keyframes fall {
+  to {
+    transform: translateY(100vh);
+    opacity: 0;
+  }
 }
 
 
