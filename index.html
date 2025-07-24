@@ -4,17 +4,25 @@
   <meta charset="UTF-8" />
   <title>City Project</title>
   <link rel="stylesheet" href="style.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 </head>
 <body>
   <header>
     <div class="left">MAKE YOUR CITY</div>
+    <div class="center">
+      <div class="mode-toggle">
+        <span id="lightModeBtn">●</span>
+        <span id="darkModeBtn">🌙</span>
+      </div>
+    </div>
     <div class="right">ABOUT</div>
   </header>
 
   <main>
-    <div class="image-output" id="output"></div>
-    <div class="input-line">
+    <div class="input-wrapper">
+      <div class="image-output" id="output"></div>
       <input type="text" id="cityInput" placeholder="TYPE YOUR CITY" />
+      <div class="input-line"></div>
     </div>
     <button id="saveBtn">SAVE</button>
   </main>

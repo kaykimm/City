@@ -5,9 +5,185 @@
 }
 
 body {
-  font-family: 'Helvetica Neue', sans-serif;
+  font-family: 'Arial', sans-serif;
   background-color: white;
   color: black;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+body.dark-mode {
+  background-color: black;
+  color: white;
+}
+
+/* 헤더 */
+/* 낮 모드 (기본) */
+header {
+  position: sticky;
+  top: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: #111;   /* 낮 모드 = 검정 헤더 */
+  color: white;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* 밤 모드 */
+body.dark-mode header {
+  background-color: white;  /* 밤 모드 = 흰색 헤더 */
+  color: black;
+}
+
+
+.left, .right {
+  font-weight: bold;
+  font-size: 12px;
+  letter-spacing: 1.5px;
+}
+
+.center {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* 모드 토글 버튼 */
+.mode-toggle span {
+  cursor: pointer;
+  font-size: 16px;
+  margin: 0 6px;
+}
+
+/* 메인 */
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 90vh;
+  padding: 2rem;
+}
+
+/* 이미지 출력 wrapper */
+.input-wrapper {
+  position: relative;
+  width: 80%;
+  max-width: 1000px;
+  height: 450px;
+  overflow: hidden;
+}
+
+/* 이미지 출력 */
+.image-output {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: calc(100% - 30px); 
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 0.3rem;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden; 
+}
+
+.image-output img {
+  max-height: 750px;
+  object-fit: contain;
+  transition: height 0.2s ease, filter 0.3s;
+}
+
+body.dark-mode .image-output img {
+  filter: invert(1) hue-rotate(180deg) brightness(1.2) contrast(1.1);
+}
+
+/* 텍스트 입력 */
+input[type="text"] {
+  position: absolute;
+  bottom: 1.2rem;
+  left: 0;
+  width: 100%;
+  border: none;
+  outline: none;
+  font-size: 12px;
+  text-transform: uppercase;
+  text-align: center;
+  letter-spacing: 2px;
+  z-index: 2;
+  background: transparent;
+  color: #333;
+}
+
+body.dark-mode input[type="text"] {
+  color: white;
+}
+
+/* UNDERLINE */
+.input-line {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  border-top: 1px solid #999;
+  width: 100%;
+  z-index: 2;
+}
+
+/* SAVE 버튼 */
+#saveBtn {
+  margin-top: 40px;
+  padding: 6px 12px;
+  font-size: 12px;
+  letter-spacing: 1px;
+  background: none;
+  border: 1px solid #888;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+#saveBtn:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+body.dark-mode #saveBtn {
+  color: white;
+  border: 1px solid #ccc;
+  background: none;
+}
+
+
+
+
+
+/* ===== OPTIONAL SAVE BUTTON (if used) ===== */
+/*
+#saveBtn {
+  position: absolute;
+  bottom: -4rem;
+  right: 0;
+  font-size: 12px;
+  letter-spacing: 2px;
+  background: none;
+  border: 1px solid #000;
+  font-weight: bold;
+  cursor: pointer;
+  padding: 0.4rem 1rem;
+}
+*/
+
+/* * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Helvetica Neue', sans-serif;
+  background-color: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
 }
 
 header {
@@ -16,14 +192,16 @@ header {
   padding: 1rem 2rem;
   background-color: #111;
   color: white;
-  font-weight: bold;
-  font-size: 14px;
+  letter-spacing: 2px;
+  font-weight: Medium;
+  font-size: 12px;
 }
 
 main {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: 15rem;
   padding: 4rem 2rem;
 }
 
@@ -42,31 +220,35 @@ main {
   object-fit: contain;
 }
 
+
 .input-line {
   border-top: 1px solid #999;
   width: 80%;
-  margin-top: 2rem;
-  padding-top: 0.5rem;
+  margin-top: 0.5rem;
+  padding-top: 0.1rem;
   text-align: center;
 }
 
 input[type="text"] {
   border: none;
   outline: none;
-  font-size: 14px;
-  text-transform: uppercase;
+  font-size: 12px;
+  text-transform: uppercase;Z
   text-align: center;
   letter-spacing: 2px;
   width: 100%;
   margin-top: 1rem;
 }
 
-#saveBtn {
-  margin-top: 2rem;
+
+/* #saveBtn {
+  margin-top: 10rem;
   align-self: flex-end;
+  font-size: 12px;
   margin-right: 10%;
+  letter-spacing: 2px;
   background: none;
   border: none;
   font-weight: bold;
   cursor: pointer;
-}
+} */ 

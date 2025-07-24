@@ -7,15 +7,48 @@ input.addEventListener('input', () => {
 
   const maxWidth = output.clientWidth;
   const letterCount = text.length;
-  const maxHeight = 100; // max image height
+  let imageHeight = 450;
 
-  const letterWidth = Math.min(maxWidth / letterCount - 5, maxHeight); // 자동 사이즈 조정
+  if (letterCount > 0) {
+    const estimatedWidthPerLetter = maxWidth / letterCount;
+    imageHeight = Math.max(300, Math.min(estimatedWidthPerLetter - 5, 400));
+  }
 
   for (let char of text) {
     const img = document.createElement('img');
-    img.src = `alphabet/${char}.png`; // a-z 이미지가 여기 들어있어야 해
-    img.style.height = `${letterWidth}px`;
+    img.src = `alphabet/${char}.png`;
+    img.alt = char;
+    img.style.height = `${imageHeight}px`;
     img.style.width = 'auto';
+    img.style.margin = '0 6px';
     output.appendChild(img);
   }
+});
+
+const lightBtn = document.getElementById('lightModeBtn');
+const darkBtn = document.getElementById('darkModeBtn');
+
+lightBtn.addEventListener('click', () => {
+  document.body.classList.remove('dark-mode');
+});
+
+darkBtn.addEventListener('click', () => {
+  document.body.classList.add('dark-mode');
+});
+
+const saveBtn = document.getElementById('saveBtn');
+
+saveBtn.addEventListener('click', () => {
+  const isDark = document.body.classList.contains('dark-mode');
+  const outputArea = document.getElementById('output');
+
+  html2canvas(outputArea, {
+    backgroundColor: isDark ? '#000000' : '#ffffff',
+    scale: 2
+  }).then(canvas => {
+    const link = document.createElement('a');
+    link.download = 'my_city.png';
+    link.href = canvas.toDataURL('image/png');
+    link.click();
+  });
 });
